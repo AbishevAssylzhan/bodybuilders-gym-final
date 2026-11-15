@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodybuilders Gym - My Profile</title>
+    <meta name="description" content="Bodybuilders Gym: training programs, an exercise library, and membership for every fitness level in Astana.">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="js/theme-init.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<header id="main-header" class="bg-custom-dark text-white p-4">
+    <div class="container border-start border-4 border-danger ps-3">
+        <h1>My Profile</h1>
+        <p class="mb-0 text-light">Your details and your saved exercises.</p>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-xl navbar-dark bg-custom-dark border-top border-secondary" aria-label="Main navigation">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Bodybuilders Gym</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="programs.html">Programs</a></li>
+                <li class="nav-item"><a class="nav-link" href="exercises.html">Exercises</a></li>
+                <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+                <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+                        <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-tools d-flex flex-wrap align-items-center gap-2 mt-3 mt-xl-0">
+                <div class="form-check form-switch theme-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="themeToggle" aria-label="Dark mode">
+                    <label class="form-check-label" for="themeToggle" id="themeLabel">Light</label>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-light" id="soundToggle" aria-pressed="true">Sound: On</button>
+                <div id="auth-nav" class="d-flex gap-2">
+                    <a class="btn btn-sm btn-outline-light" href="login.html">Log In</a>
+                    <a class="btn btn-sm btn-custom-rust" href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="container my-5 flex-grow-1">
+    <div id="flash-message" class="alert alert-success d-none" role="status"></div>
+
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <section class="card p-4 bg-custom-surface border-0 shadow-sm h-100" id="profile-card" aria-labelledby="profile-name">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="profile-avatar" id="profile-initials" aria-hidden="true"></div>
+                    <div>
+                        <h2 class="h4 mb-0 border-0 pb-0" id="profile-name"></h2>
+                        <span class="text-muted small">Member</span>
+                    </div>
+                </div>
+                <dl class="profile-details mb-4">
+                    <dt>Email</dt><dd id="profile-email"></dd>
+                    <dt>Phone</dt><dd id="profile-phone"></dd>
+                    <dt>Membership</dt><dd id="profile-plan"></dd>
+                    <dt>Member since</dt><dd id="profile-since"></dd>
+                </dl>
+                <button type="button" class="btn btn-outline-danger w-100 mt-auto" id="profile-logout">Log Out</button>
+            </section>
+        </div>
+
+        <div class="col-lg-8">
+            <section class="card p-4 bg-custom-surface border-0 shadow-sm mb-4" aria-labelledby="saved-title">
+                <h2 id="saved-title">Saved Exercises</h2>
+                <ul class="list-group list-group-flush bg-transparent" id="saved-list"></ul>
+                <p id="saved-empty" class="mb-0 d-none">You have not saved any exercises yet. Open the <a href="exercises.html">Exercise Library</a> and press &ldquo;Save&rdquo; on a card.</p>
+            </section>
+
+            <section class="card p-4 bg-custom-surface border-0 shadow-sm" aria-labelledby="search-title">
+                <h2 id="search-title">Your Last Exercise Search</h2>
+                <p class="mb-3" id="last-search"></p>
+                <a href="exercises.html" class="btn btn-custom-rust align-self-start">Open Exercise Library</a>
+            </section>
+        </div>
+    </div>
+</main>
+
+<footer id="site-footer" class="bg-custom-dark text-white text-center py-3 mt-auto">
+    <div class="container">
+        <p class="mb-0">Bodybuilders Gym. Site built by Urazbek Bek, Abishev Assylzhan, and Daurambekov Darkhan - Group SE-2512</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/script.js"></script>
+<script src="js/advanced.js"></script>
+<script src="js/jquery-features.js"></script>
+</body>
+</html>
