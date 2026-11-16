@@ -1,0 +1,944 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Karla:wght@400;500;700&display=swap');
+
+/* ---------- Global Reset & Variables ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #ECE6D8;
+    --surface: #FAF7F0;
+    --ink: #211D19;
+    --muted: #6B6459;
+    --rust: #A8442E;
+    --brass: #9C7A2E;
+    --border: #D8CFBE;
+    --dark: #211D19;
+    --dark-text: #EDE6D8;
+}
+
+/* ---------- Basic Elements ---------- */
+body {
+    font-family: 'Karla', 'Segoe UI', sans-serif;
+    background-color: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Oswald', 'Arial Narrow', sans-serif;
+}
+
+/* ---------- Task 1: Responsive Typography ---------- */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--dark-text);
+}
+
+h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+}
+
+h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: var(--muted);
+}
+
+/* Typography Breakpoints */
+@media (min-width: 768px) {
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.75rem; }
+    p  { font-size: 1.05rem; }
+}
+
+@media (min-width: 992px) {
+    h1 { font-size: 2.75rem; }
+    h2 { font-size: 2rem; }
+    p  { font-size: 1.1rem; }
+}
+
+a {
+    color: var(--rust);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--brass);
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ---------- Header & Footer ---------- */
+#main-header {
+    background-color: var(--dark);
+    padding: 3rem 6vw;
+}
+
+#main-header .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-left: 5px solid var(--rust);
+    padding-left: 1.5rem;
+}
+
+#main-header p {
+    color: var(--dark-text);
+    margin-bottom: 0;
+}
+
+#site-footer {
+    background-color: var(--dark);
+    color: var(--dark-text);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+    font-size: 0.85rem;
+}
+
+/* ---------- Navigation ---------- */
+.nav-menu {
+    background-color: var(--dark);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 6vw;
+    gap: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-logo {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--dark-text);
+}
+
+.nav-logo:hover {
+    color: var(--dark-text);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.nav-links a {
+    color: var(--dark-text);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--dark-text);
+    border-bottom: 2px solid var(--brass);
+}
+
+.nav-links a.active {
+    border-bottom: 2px solid var(--rust);
+}
+
+/* ---------- Layout & Container ---------- */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 0;
+}
+
+.card {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.feature-img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1.25rem;
+}
+
+.trainer-img,
+.profile-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--rust);
+    margin: 0 auto 0.75rem auto;
+}
+
+.trainer {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* ---------- Task 2: Pure CSS Media Queries Card Group ---------- */
+.custom-card-group {
+    display: flex;
+    flex-direction: column; /* Mobile: stacked */
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .custom-card-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .custom-card-item {
+        flex: 0 0 calc(50% - 0.75rem); /* Tablet: 2 in a row */
+    }
+}
+
+@media (min-width: 992px) {
+    .custom-card-group {
+        flex-direction: row; /* Desktop: 3 in a row */
+    }
+    .custom-card-item {
+        flex: 1;
+    }
+}
+
+/* ---------- Task 2 / Flexbox Programs Layout ---------- */
+.program-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.program-card {
+    flex: 1 1 280px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.program-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(33, 29, 25, 0.12);
+}
+
+.program-card-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+/* ---------- Task 3: Dashboard Grid Layout ---------- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "d-header d-header"
+        "d-sidebar d-main"
+        "d-footer d-footer";
+    min-height: 100vh;
+}
+
+.dashboard-top { grid-area: d-header; }
+.dashboard-sidebar {
+    grid-area: d-sidebar;
+    background-color: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+}
+.dashboard-main { grid-area: d-main; padding: 2rem; }
+.dashboard-grid > #site-footer { grid-area: d-footer; margin-top: 0; }
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "d-header"
+            "d-sidebar"
+            "d-main"
+            "d-footer";
+    }
+    .dashboard-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+}
+
+/* ---------- Task 4: Gallery Grid ---------- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-caption {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(33, 29, 25, 0.85);
+    color: var(--dark-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item:hover .gallery-caption { opacity: 1; }
+
+@media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Bootstrap Utility Custom Overrides ---------- */
+.bg-custom-dark { background-color: var(--dark) !important; }
+.bg-custom-surface { background-color: var(--surface) !important; }
+.btn-custom-rust {
+    background-color: var(--rust);
+    color: var(--dark-text);
+    border: none;
+}
+.btn-custom-rust:hover {
+    background-color: var(--brass);
+    color: var(--dark-text);
+}
+
+/* ==========================================================
+   Assignment #4: JavaScript components
+   ========================================================== */
+
+/* Task 4: smooth background color change */
+body { transition: background-color 0.4s ease; }
+
+/* Task 5: date and time block */
+.datetime-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    color: var(--rust);
+}
+
+/* Task 2: Accordion (answers hidden by default) */
+.faq-item {
+    background-color: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.15rem;
+    color: var(--ink);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.faq-question:hover { color: var(--rust); }
+
+.faq-question::after {
+    content: '+';
+    font-size: 1.6rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.open .faq-question::after { transform: rotate(45deg); }
+
+.faq-answer {
+    max-height: 0;               /* hidden by default */
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.faq-answer p {
+    padding: 0 1.25rem 1rem;
+    margin: 0;
+}
+
+/* Task 3: Popup (hidden by default, fades in when .show is added) */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(33, 29, 25, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2000;
+}
+
+.popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-box {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--surface);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.popup-overlay.show .popup-box { transform: translateY(0); }
+
+.popup-close {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.9rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.popup-close:hover { color: var(--rust); }
+
+
+/* ==========================================================
+   Assignment #5: Advanced JavaScript and DOM manipulation
+   ========================================================== */
+
+/* ---- Classes that replace inline style="..." attributes ---- */
+.img-cover-200 { height: 200px; object-fit: cover; }
+.img-cover-220 { height: 220px; object-fit: cover; }
+.img-banner    { max-height: 400px; width: 100%; object-fit: cover; }
+.carousel-limit { max-height: 450px; }
+
+/* ---- Night theme (JS sets data-bs-theme="dark" on <html>) ---- */
+[data-bs-theme="dark"] {
+    --bg: #171411;
+    --surface: #231F1B;
+    --ink: #EDE6D8;
+    --muted: #B5AB9B;
+    --border: #3A342D;
+}
+
+[data-bs-theme="dark"] .gallery-caption { color: var(--dark-text); }
+
+/* ---- Keyboard focus is clearly visible ---- */
+.navbar-nav .nav-link:focus-visible,
+.faq-question:focus-visible,
+.star:focus-visible {
+    outline: 3px solid var(--brass);
+    outline-offset: 2px;
+}
+
+/* ---- Navbar tools (theme and sound buttons) ---- */
+.nav-tools .btn { white-space: nowrap; }
+
+/* ---- Rating stars ---- */
+.rating { display: flex; gap: 0.25rem; }
+
+.star {
+    background: none;
+    border: none;
+    padding: 0 0.15rem;
+    font-size: 2.4rem;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.star:hover { transform: scale(1.2); color: var(--brass); }
+.star.active { color: #E0A526; }
+.star.pop { animation: starPop 0.35s ease; }
+
+@keyframes starPop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.55); }
+    100% { transform: scale(1); }
+}
+
+/* ---- New cards slide in ---- */
+.fade-in { animation: fadeInUp 0.5s ease both; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.program-col .card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.program-col .card:hover { transform: translateY(-6px); box-shadow: 0 10px 20px rgba(33, 29, 25, 0.2) !important; }
+
+/* ---- Progress bar fills smoothly when JS changes its width ---- */
+.progress-bar { transition: width 0.6s ease; }
+
+
+/* ==========================================================
+   Assignment #6: jQuery features
+   ========================================================== */
+
+/* ---- Task 2: autocomplete dropdown under the search box ---- */
+.suggestions-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 1050;
+    max-height: 260px;
+    overflow-y: auto;
+    margin-top: 2px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: var(--surface);
+    box-shadow: 0 8px 20px rgba(33, 29, 25, 0.18);
+}
+
+.suggestions-list[hidden] { display: none; }
+
+.suggestions-list li {
+    padding: 0.55rem 0.9rem;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--ink);
+    border: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.suggestions-list li:last-child { border-bottom: 0; }
+.suggestions-list li:hover,
+.suggestions-list li.active { background-color: var(--rust); color: #fff; }
+
+/* ---- Task 3: highlighted words and dimmed FAQ items ---- */
+mark.search-hit {
+    background-color: #F5D547;
+    color: #211D19;
+    padding: 0 0.15em;
+    border-radius: 3px;
+}
+
+.faq-item { transition: opacity 0.25s ease; }
+.faq-item.faq-dim { opacity: 0.35; }
+
+/* ---- Task 4: colorful scroll progress bar (fixed at the top of every page) ---- */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 7px;
+    z-index: 2100;
+    background-color: rgba(33, 29, 25, 0.12);
+    pointer-events: none;
+}
+
+#scroll-progress-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 0 7px 7px 0;
+    background: linear-gradient(90deg, #A8442E, #E0A526, #4FA36B, #2E86C1, #8E44AD, #A8442E);
+    background-size: 300% 100%;
+    animation: progressShift 5s linear infinite;
+    box-shadow: 0 0 10px rgba(224, 165, 38, 0.85);
+}
+
+#scroll-progress-bar.complete { box-shadow: 0 0 16px rgba(79, 163, 107, 0.95); }
+
+@keyframes progressShift {
+    from { background-position: 0% 0; }
+    to   { background-position: 300% 0; }
+}
+
+#scroll-percent {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 2100;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    background-color: var(--dark);
+    color: var(--dark-text);
+    font-size: 0.8rem;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    pointer-events: none;
+}
+
+#scroll-percent.visible { opacity: 0.92; transform: translateY(0); }
+
+/* ---- Task 5: animated numbers (digits keep the same width while counting) ---- */
+.stat-number { font-variant-numeric: tabular-nums; }
+
+/* ---- Task 6: spinner inside the submit button ---- */
+.btn[aria-busy="true"] { cursor: progress; opacity: 0.85; }
+
+/* ---- Task 7: toast notifications ---- */
+#toast-container {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 2200;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: min(340px, calc(100vw - 2rem));
+}
+
+.toast-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.75rem 0.9rem;
+    border-radius: 8px;
+    border-left: 5px solid var(--brass);
+    background-color: var(--surface);
+    color: var(--ink);
+    box-shadow: 0 8px 22px rgba(33, 29, 25, 0.28);
+}
+
+.toast-item::before {
+    content: 'i';
+    flex: 0 0 auto;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background-color: var(--brass);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1.4rem;
+    text-align: center;
+}
+
+.toast-item.toast-success { border-left-color: #2E8B57; }
+.toast-item.toast-success::before { content: '\2713'; background-color: #2E8B57; }
+.toast-item.toast-error { border-left-color: #C0392B; }
+.toast-item.toast-error::before { content: '!'; background-color: #C0392B; }
+
+.toast-message { flex: 1 1 auto; margin: 0; }
+
+.toast-close {
+    flex: 0 0 auto;
+    background: none;
+    border: 0;
+    padding: 0 0.2rem;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.toast-close:hover { color: var(--rust); }
+
+/* ---- Task 8: copy button (icon changes to a check mark) + tooltip ---- */
+.copy-snippet { word-break: break-word; }
+
+.promo-code {
+    padding: 0.35rem 0.8rem;
+    border: 2px dashed var(--rust);
+    border-radius: 6px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--rust);
+    background-color: transparent;
+}
+
+.copy-btn {
+    position: relative;
+    flex: 0 0 auto;
+    width: 2.3rem;
+    height: 2.3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.copy-btn:hover { color: var(--rust); border-color: var(--rust); }
+.copy-btn:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+.copy-btn svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.copy-btn .icon-check { display: none; }
+.copy-btn.copied { background-color: #2E8B57; border-color: #2E8B57; color: #fff; }
+.copy-btn.copied .icon-copy { display: none; }
+.copy-btn.copied .icon-check { display: inline; }
+
+.copy-tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    right: 0;
+    padding: 0.3rem 0.65rem;
+    border-radius: 6px;
+    background-color: var(--dark);
+    color: var(--dark-text);
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.copy-tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 0.8rem;
+    border: 5px solid transparent;
+    border-top-color: var(--dark);
+}
+
+/* ---- Task 9: lazy images show a soft shimmer until the real picture arrives ---- */
+img.lazy {
+    background: linear-gradient(110deg, var(--border) 30%, var(--surface) 50%, var(--border) 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+}
+
+img.lazy.loaded { animation: none; background: none; }
+img.lazy-fade { animation: lazyFade 0.6s ease both; }
+
+@keyframes shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+@keyframes lazyFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.trainer-img.lazy { min-height: 160px; }
+
+@media (prefers-reduced-motion: reduce) {
+    #scroll-progress-bar,
+    img.lazy,
+    img.lazy-fade { animation: none; }
+}
+
+/* The question text sits in ONE span, so the flex button keeps text on the left and the + / x icon on the right
+   even when the highlight splits the text into several pieces (Task 3) */
+.faq-question-text { flex: 1 1 auto; text-align: left; }
+
+
+/* ==========================================================
+   FINAL PROJECT additions
+   1. Colors for links in both themes
+   2. Navbar: dropdown, theme switch, auth buttons
+   3. Buttons and hover effects
+   4. Sign Up / Log In / Profile
+   5. Exercise library
+   6. Responsive fixes
+   ========================================================== */
+
+/* ---------- 1. Link and accent colors (contrast checked in both themes) ---------- */
+:root {
+    --link: #8F3623;           /* darker rust: 6.5:1 on the light background */
+    --link-hover: #6E4F10;
+    --rule-ok: #2F6B3A;
+    --rule-todo: var(--muted);
+}
+
+[data-bs-theme="dark"] {
+    --link: #E9967E;           /* lighter rust: readable on dark surfaces */
+    --link-hover: #E8C16A;
+    --rule-ok: #7FD08E;
+}
+
+a { color: var(--link); }
+a:hover { color: var(--link-hover); }
+.text-danger { color: var(--link) !important; }
+.text-muted { color: var(--muted) !important; }
+[data-bs-theme="dark"] .btn-outline-danger { color: var(--link); border-color: var(--link); }
+[data-bs-theme="dark"] .btn-outline-danger:hover { background-color: var(--link); color: #171411; }
+[data-bs-theme="dark"] .card, [data-bs-theme="dark"] .modal-content { color: var(--ink); }
+[data-bs-theme="dark"] .invalid-feedback { color: #FF9C8C; }
+.invalid-feedback { color: #A61B1B; font-size: 0.875rem; }
+
+/* ---------- 2. Navbar ---------- */
+.navbar .nav-link { transition: color 0.2s ease, background-color 0.2s ease; border-radius: 4px; }
+.navbar .nav-link:hover { color: #fff; background-color: rgba(255, 255, 255, 0.08); text-decoration: none; }
+.navbar .nav-link.active { color: #fff; box-shadow: inset 0 -2px 0 var(--rust); }
+.navbar .dropdown-menu { background-color: var(--dark); border: 1px solid #3A342D; }
+.navbar .dropdown-item { color: var(--dark-text); transition: background-color 0.2s ease, padding-left 0.2s ease; }
+.navbar .dropdown-item:hover, .navbar .dropdown-item.active { background-color: var(--rust); color: #fff; padding-left: 1.25rem; }
+.theme-switch { color: var(--dark-text); display: flex; align-items: center; gap: 0.4rem; padding-left: 2.5em; }
+.theme-switch .form-check-label { min-width: 2.8rem; cursor: pointer; }
+.theme-switch .form-check-input { cursor: pointer; width: 2.4em; height: 1.2em; }
+.theme-switch .form-check-input:checked { background-color: var(--rust); border-color: var(--rust); }
+.theme-switch .form-check-input:focus-visible,
+#soundToggle:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+.auth-name { font-weight: 700; }
+#auth-nav .btn { white-space: nowrap; }
+
+/* ---------- 3. Buttons and UI effects ---------- */
+.btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(33, 29, 25, 0.25); }
+.btn:active:not(:disabled) { transform: translateY(0); box-shadow: none; }
+.btn:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+.btn-custom-rust { background-color: #9A3B27; }
+.btn-danger { background-color: #9A3B27; border-color: #9A3B27; }
+.btn-danger:hover { background-color: #7E2F1E; border-color: #7E2F1E; }
+.card { transition: box-shadow 0.25s ease; }
+.form-control, .form-select { background-color: var(--surface); color: var(--ink); border-color: var(--border); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.form-control:focus, .form-select:focus { background-color: var(--surface); color: var(--ink); border-color: var(--rust); box-shadow: 0 0 0 0.2rem rgba(168, 68, 46, 0.3); }
+.form-control::placeholder { color: var(--muted); opacity: 1; }
+.form-label, label { color: var(--ink); }
+.form-check-label { font-size: 0.95rem; }
+.form-control.is-invalid, .form-select.is-invalid { border-color: #C0392B; }
+.form-control.is-valid { border-color: #2F8F4E; }
+.input-group > .invalid-feedback { width: 100%; }
+
+/* ---------- 4. Sign Up / Log In / Profile ---------- */
+.password-rules li { padding-left: 0.25rem; transition: color 0.2s ease; }
+.password-rules .rule-ok { color: var(--rule-ok); font-weight: 700; }
+.password-rules .rule-todo { color: var(--rule-todo); }
+
+.profile-avatar {
+    width: 64px; height: 64px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--rust); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Oswald', sans-serif; font-size: 1.5rem; letter-spacing: 1px;
+}
+.profile-details dt { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-top: 0.75rem; }
+.profile-details dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+#profile-card { display: flex; flex-direction: column; }
+#saved-list .list-group-item { display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--ink); border-color: var(--border); }
+.card.p-4, .card.p-md-5 { margin-bottom: 0; }
+
+/* ---------- 5. Exercise library ---------- */
+.exercise-card { padding: 0; margin: 0; overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.exercise-card:hover { transform: translateY(-6px); box-shadow: 0 12px 22px rgba(33, 29, 25, 0.22); }
+.exercise-card img { width: 100%; height: 180px; object-fit: cover; background: var(--border); }
+.exercise-card .exercise-body { padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex-grow: 1; }
+.exercise-card h3 { margin: 0; overflow-wrap: anywhere; }
+.exercise-card .badge { font-weight: 500; }
+.exercise-card .exercise-actions { margin-top: auto; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.modal-image { max-height: 280px; object-fit: cover; background: var(--border); }
+.modal-description { white-space: pre-line; max-height: 14rem; overflow-y: auto; }
+
+.btn-save { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid var(--rust); color: var(--link); background: transparent; }
+.btn-save svg { width: 1.1em; height: 1.1em; fill: transparent; stroke: currentColor; stroke-width: 2; transition: fill 0.2s ease, transform 0.2s ease; }
+.btn-save:hover { background: var(--rust); color: #fff; }
+.btn-save.saved { background: #9A3B27; color: #fff; }
+.btn-save.saved svg { fill: currentColor; }
+.btn-save.pop svg { animation: heartPop 0.4s ease; }
+@keyframes heartPop { 0% { transform: scale(1); } 50% { transform: scale(1.5); } 100% { transform: scale(1); } }
+
+.recent-chip { border: 1px solid var(--border); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 0.15rem 0.75rem; font-size: 0.85rem; transition: background-color 0.2s ease, border-color 0.2s ease; }
+.recent-chip:hover { background: var(--rust); border-color: var(--rust); color: #fff; }
+
+.exercise-skeleton { height: 280px; border-radius: 6px; background: linear-gradient(90deg, var(--border) 25%, var(--surface) 50%, var(--border) 75%); background-size: 200% 100%; animation: shimmer 1.2s linear infinite; }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* ---------- 6. Responsive fixes ---------- */
+img, svg { max-width: 100%; }
+.table-responsive { overflow-x: auto; }
+@media (max-width: 575.98px) {
+    .card.p-4 { padding: 1.25rem !important; }
+    .exercise-card img { height: 160px; }
+    h1 { font-size: 1.6rem; }
+}
+@media (max-width: 1199.98px) {
+    .nav-tools { padding-bottom: 0.75rem; }
+    .navbar .dropdown-menu { background-color: transparent; border: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Navbar fit fixes (desktop, tablet, phone) ---------- */
+.navbar .form-check-label { color: var(--dark-text); }
+.navbar .navbar-brand { font-family: 'Oswald', sans-serif; letter-spacing: 0.5px; margin-right: 1rem; }
+.navbar .nav-link { white-space: nowrap; padding-left: 0.55rem; padding-right: 0.55rem; font-size: 0.95rem; }
+.nav-tools { flex-wrap: nowrap; }
+.nav-tools .theme-switch { margin: 0; }
+@media (min-width: 1200px) {
+    .nav-tools { flex-wrap: nowrap !important; margin-left: auto; }
+    .navbar .navbar-brand { font-size: 1.05rem; margin-right: 0.5rem; }
+    .navbar .nav-link { padding-left: 0.4rem; padding-right: 0.4rem; font-size: 0.9rem; }
+    .nav-tools { gap: 0.4rem !important; }
+    .nav-tools .btn { padding: 0.2rem 0.5rem; font-size: 0.8rem; }
+}
+@media (max-width: 1199.98px) {
+    .nav-tools { flex-wrap: wrap; }
+}
+
+/* ---------- Contrast fixes (checked in light and dark mode) ---------- */
+#site-footer p { color: var(--dark-text); }
+.btn-outline-danger { --bs-btn-color: var(--link); --bs-btn-border-color: var(--link); --bs-btn-hover-bg: #9A3B27; --bs-btn-hover-border-color: #9A3B27; --bs-btn-hover-color: #fff; --bs-btn-active-bg: #7E2F1E; --bs-btn-active-border-color: #7E2F1E; --bs-btn-active-color: #fff; }
+.btn-outline-danger.active, .btn-outline-danger:active { background-color: #9A3B27; border-color: #9A3B27; color: #fff; }
+[data-bs-theme="dark"] .btn-outline-danger:hover { background-color: #9A3B27; border-color: #9A3B27; color: #fff; }
+.btn-outline-secondary { --bs-btn-color: var(--ink); --bs-btn-border-color: var(--muted); --bs-btn-hover-bg: var(--ink); --bs-btn-hover-border-color: var(--ink); --bs-btn-hover-color: var(--bg); }
+.datetime-text { color: var(--link); }
+.promo-code { color: var(--link); border-color: var(--link); }
+.navbar .btn-outline-light { --bs-btn-color: #fff; }
