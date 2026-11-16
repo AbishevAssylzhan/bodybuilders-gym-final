@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bodybuilders Gym - Exercise Library</title>
+    <meta name="description" content="Bodybuilders Gym: training programs, an exercise library, and membership for every fitness level in Astana.">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script src="js/theme-init.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<header id="main-header" class="bg-custom-dark text-white p-4">
+    <div class="container border-start border-4 border-danger ps-3">
+        <h1>Exercise Library</h1>
+        <p class="mb-0 text-light">Search real exercises from an open API and save your favorites.</p>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-xl navbar-dark bg-custom-dark border-top border-secondary" aria-label="Main navigation">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Bodybuilders Gym</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="programs.html">Programs</a></li>
+                <li class="nav-item"><a class="nav-link active" href="exercises.html" aria-current="page">Exercises</a></li>
+                <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+                <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                        <li><a class="dropdown-item" href="faq.html">FAQ</a></li>
+                        <li><a class="dropdown-item" href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-tools d-flex flex-wrap align-items-center gap-2 mt-3 mt-xl-0">
+                <div class="form-check form-switch theme-switch mb-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="themeToggle" aria-label="Dark mode">
+                    <label class="form-check-label" for="themeToggle" id="themeLabel">Light</label>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-light" id="soundToggle" aria-pressed="true">Sound: On</button>
+                <div id="auth-nav" class="d-flex gap-2">
+                    <a class="btn btn-sm btn-outline-light" href="login.html">Log In</a>
+                    <a class="btn btn-sm btn-custom-rust" href="signup.html">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="container my-5 flex-grow-1">
+
+    <section class="card p-4 bg-custom-surface border-0 shadow-sm mb-4" aria-labelledby="filter-title">
+        <h2 id="filter-title">Find an Exercise</h2>
+        <div class="row g-3 align-items-end">
+            <div class="col-lg-5">
+                <label for="exercise-search" class="form-label fw-bold">Search by name or muscle</label>
+                <input type="search" id="exercise-search" class="form-control" placeholder="For example: squat, biceps, plank" autocomplete="off">
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <label for="exercise-category" class="form-label fw-bold">Category</label>
+                <select id="exercise-category" class="form-select"><option value="">All categories</option></select>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <label for="exercise-equipment" class="form-label fw-bold">Equipment</label>
+                <select id="exercise-equipment" class="form-select"><option value="">Any equipment</option></select>
+            </div>
+            <div class="col-lg-1">
+                <button type="button" id="exercise-reset" class="btn btn-outline-danger w-100">Reset</button>
+            </div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mt-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="saved-only">
+                <label class="form-check-label" for="saved-only">Show only my saved exercises</label>
+            </div>
+            <div id="recent-searches" class="d-flex flex-wrap align-items-center gap-2 small"></div>
+        </div>
+    </section>
+
+    <div id="exercise-status"></div>
+    <p id="exercise-count" class="fw-bold mb-3" aria-live="polite"></p>
+
+    <div class="row g-4" id="exercise-grid"></div>
+
+    <div class="text-center mt-4">
+        <button type="button" id="exercise-more" class="btn btn-custom-rust d-none">Load More Exercises</button>
+    </div>
+
+    <p class="small text-muted mt-4 mb-0">
+        Data source: <strong id="exercise-source">loading...</strong>. Exercise data comes from the open
+        <a href="https://wger.de/en/software/api" target="_blank" rel="noopener">wger API</a>
+        (Creative Commons licence) and the <a href="https://github.com/yuhonas/free-exercise-db" target="_blank" rel="noopener">free-exercise-db</a> project.
+    </p>
+</main>
+
+<!-- Details window (Bootstrap modal) -->
+<div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h4 border-0 pb-0 mb-0" id="exerciseModalTitle"></h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-md-5"><img id="modal-image" src="images/dumbbell-rack.jpg" alt="" class="rounded w-100 modal-image"></div>
+                    <div class="col-md-7">
+                        <p class="mb-1"><strong>Category:</strong> <span id="modal-category"></span></p>
+                        <p class="mb-1"><strong>Muscles:</strong> <span id="modal-muscles"></span></p>
+                        <p class="mb-3"><strong>Equipment:</strong> <span id="modal-equipment"></span></p>
+                        <p id="modal-description" class="modal-description mb-0"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="modal-save" class="btn btn-save"></button>
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="site-footer" class="bg-custom-dark text-white text-center py-3 mt-auto">
+    <div class="container">
+        <p class="mb-0">Bodybuilders Gym. Site built by Urazbek Bek, Abishev Assylzhan, and Daurambekov Darkhan - Group SE-2512</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/script.js"></script>
+<script src="js/advanced.js"></script>
+<script src="js/jquery-features.js"></script>
+<script src="js/exercises.js"></script>
+</body>
+</html>
