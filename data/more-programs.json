@@ -1,0 +1,38 @@
+[
+  {
+    "id": 4,
+    "name": "Powerlifting Basics",
+    "category": "strength",
+    "level": "Intermediate",
+    "duration": 75,
+    "description": "Learn the squat, bench press, and deadlift with coach feedback on every rep.",
+    "image": "images/gallery-2.jpg"
+  },
+  {
+    "id": 5,
+    "name": "HIIT Express",
+    "category": "cardio",
+    "level": "All levels",
+    "duration": 30,
+    "description": "Short, intense intervals that raise your heart rate and burn calories in half an hour.",
+    "image": "images/gallery-3.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Pilates Core",
+    "category": "mind",
+    "level": "Beginner",
+    "duration": 45,
+    "description": "Strengthen your core and improve posture with controlled, low-impact movements.",
+    "image": "images/gallery-5.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Group Boot Camp",
+    "category": "cardio",
+    "level": "Advanced",
+    "duration": 50,
+    "description": "Team-based circuits that mix running, bodyweight work, and strength stations.",
+    "image": "images/gallery-4.jpg"
+  }
+]
